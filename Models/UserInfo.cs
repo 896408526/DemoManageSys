@@ -32,5 +32,9 @@ namespace Models
         /// </summary>
         [MaxLength(16)]
         public string Phone { get; set; } = "";
+        /// <summary>
+        /// 是否管理员
+        /// </summary>
+        public bool IsAdmin { get; set; }
     }
 }

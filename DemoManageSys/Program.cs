@@ -1,9 +1,8 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
+ï»¿using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -12,71 +11,44 @@ using System.Threading.Tasks;
 
 namespace ManageSys
 {
-    public class Startup
+    public class Program
     {
-        public Startup(IConfiguration configuration)
+        public static void Main(string[] args)
         {
-            Configuration = configuration;
+            InitDB();
+
+            CreateHostBuilder(args).Build().Run();
         }
 
-        public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-            #region ¿çÓò²ßÂÔ
-            services.AddCors(options =>
-            {
-                options.AddPolicy("MyCorsPolicy", builder =>
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    builder.AllowAnyOrigin()
-                           .AllowAnyMethod()
-                           .AllowAnyHeader();
+                    webBuilder.UseStartup<Startup>();
                 });
 
-            });
-            #endregion
-
-            services.AddDbContext<DemoManageSysDbContext>(options => options.UseSqlServer("name=ConnectionStrings:SqlServerStr"));
-
-            services.AddControllersWithViews();
-        }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public static void InitDB()
         {
-            if (env.IsDevelopment())
+            var options = new DbContextOptionsBuilder<DemoManageSysDbContext>()
+                .UseSqlServer("Data Source=.;Initial Catalog=DemoManageSysCore;Integrated Security=True")
+                .Options;
+
+            DemoManageSysDbContext db = new DemoManageSysDbContext(options);
+            //åˆ é™¤
+            db.Database.EnsureDeleted();
+            //æ·»åŠ 
+            db.Database.EnsureCreated();
+            //åˆ›å»ºä¸€ä¸ªåˆå§‹ç®¡ç†å‘˜
+            UserInfo userInfo = new UserInfo()
             {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-            }
-            app.UseStaticFiles();
+                Account = "Admin",
+                CreateTime = DateTime.Now,
+                IsAdmin = true,
+                UserName = "åˆå§‹ç®¡ç†å‘˜"
+            };
 
-            app.UseRouting();
-
-            //Æô¶¯¿çÓò²ßÂÔ
-            app.UseCors("MyCorsPolicy");
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Login}/{action=LoginView}/{id?}");
-
-                endpoints.MapControllerRoute(
-                    name: "Admin",
-                    pattern: "{area:exists}/{controller=Login}/{action=LoginView}/{id?}");
-
-                endpoints.MapControllerRoute(
-                    name: "APP",
-                    pattern: "{area:exists}/{controller=Login}/{action=LoginView}/{id?}");
-            });
-
+            db.UserInfo.Add(userInfo);
+            db.SaveChanges();
         }
     }
 }
