@@ -10,7 +10,7 @@ namespace Models
     /// <summary>
     /// 顾客表
     /// </summary>
-    internal class CustomerInfo : BaseDeleteEntity
+    public class CustomerInfo : BaseDeleteEntity
     {
         /// <summary>
         /// 顾客姓名
