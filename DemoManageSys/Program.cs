@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Common;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -9,13 +10,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ManageSys
+namespace DemoManageSys
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-            InitDB();
+            //InitDB();
 
             CreateHostBuilder(args).Build().Run();
         }
@@ -41,8 +42,11 @@ namespace ManageSys
             //创建一个初始管理员
             UserInfo userInfo = new UserInfo()
             {
+                Id = Guid.NewGuid().ToString(),
                 Account = "Admin",
+                PassWord = MD5help.Md5("123456"),
                 CreateTime = DateTime.Now,
+                Sex = 1,
                 IsAdmin = true,
                 UserName = "初始管理员"
             };

@@ -26,8 +26,14 @@ namespace Models
         /// </summary>
         public int ProductNum { get; set; }
         /// <summary>
+        /// 商品图片
+        /// </summary>
+        [MaxLength(64)]
+        public string Imgage { get; set; } = "";
+        /// <summary>
         /// 商品分类ID
         /// </summary>
-        public int CategorylD { get; set; }
+        [MaxLength(36)]
+        public string CategorylD { get; set; }
     }
 }

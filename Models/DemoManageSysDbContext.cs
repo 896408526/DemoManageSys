@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace Models
         }
 
         public DbSet<UserInfo> UserInfo { get; set; }
+        public DbSet<DepartmentInfo> DepartmentInfo { get; set; }
         public DbSet<RoleInfo> RoleInfo { get; set; }
         public DbSet<MenuInfo> MenuInfo { get; set; }
         public DbSet<R_RoleInfo_MenuInfo> R_RoleInfo_MenuInfo { get; set; }

@@ -16,16 +16,18 @@ namespace Models
         /// 供应商名称
         /// </summary>
         [MaxLength(36)]
-        public string SupplierName { get; set; } = "";
+        public string SupplierName { get; set; }
+
         /// <summary>
         /// 供应商联系人
         /// </summary>
         [MaxLength(36)]
-        public string SupplierContact { get; set; } = "";
+        public string SupplierContact { get; set; }
+
         /// <summary>
         /// 供应商电话号码
         /// </summary>
         [MaxLength(36)]
-        public string SupplierPhone { get; set; } = "";
+        public string SupplierPhone { get; set; }
     }
 }

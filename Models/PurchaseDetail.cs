@@ -15,11 +15,13 @@ namespace Models
         /// <summary>
         /// 进货ID
         /// </summary>
-        public int PurchaseId { get; set; }
+        [MaxLength(36)]
+        public string PurchaseId { get; set; }
         /// <summary>
         /// 商品ID
         /// </summary>
-        public int ProductId { get; set; }
+        [MaxLength(36)]
+        public string ProductId { get; set; }
         /// <summary>
         /// 商品数量
         /// </summary>

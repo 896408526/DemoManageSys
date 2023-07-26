@@ -15,7 +15,8 @@ namespace Models
         /// <summary>
         /// 供应商ID
         /// </summary>
-        public int SupplierId { get; set; }
+        [MaxLength(36)]
+        public string SupplierId { get; set; }
         /// <summary>
         /// 材料名称
         /// </summary>

@@ -13,7 +13,7 @@ namespace Models
         /// 主键
         /// </summary>
         [Key]
-        public int Id { get; set; }
+        public string Id { get; set; }
         /// <summary>
         /// 添加时间
         /// </summary>

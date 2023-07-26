@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,15 +15,18 @@ namespace Models
         /// <summary>
         /// 顾客ID
         /// </summary>
-        public int CustomerId { get; set; }
+        [MaxLength(36)]
+        public string CustomerId { get; set; }
         /// <summary>
         /// 商品ID
         /// </summary>
-        public int ProductId { get; set; }
+        [MaxLength(36)]
+        public string ProductId { get; set; }
         /// <summary>
         /// 订单ID
         /// </summary>
-        public int OrderId { get; set; }
+        [MaxLength(36)]
+        public string OrderId { get; set; }
 
     }
 }

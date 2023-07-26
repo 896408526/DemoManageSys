@@ -8,7 +8,7 @@ namespace Models
     public class UserInfo : BaseDeleteEntity
     {
         /// <summary>
-        /// 账号
+        /// 用户账号
         /// </summary>
         [MaxLength(16)]
         public string Account { get; set; } = "";
@@ -18,20 +18,29 @@ namespace Models
         [MaxLength(16)]
         public string UserName { get; set; } = "";
         /// <summary>
-        /// 密码
+        /// 手机
         /// </summary>
-        [MaxLength(32)]
-        public string UserPwd { get; set; } = "";
+        [MaxLength(16)]
+        public string Phone { get; set; } = "";
         /// <summary>
         /// 邮箱
         /// </summary>
         [MaxLength(32)]
-        public string Eamil { get; set; } = "";
+        public string Email { get; set; } = "";
         /// <summary>
-        /// 电话
+        /// 部门Id
         /// </summary>
-        [MaxLength(16)]
-        public string Phone { get; set; } = "";
+        [MaxLength(36)]
+        public string DepartmentId { get; set; } = "";
+        /// <summary>
+        /// 性别
+        /// </summary>
+        public int Sex { get; set; }
+        /// <summary>
+        /// 密码
+        /// </summary>
+        [MaxLength(32)]
+        public string PassWord { get; set; } = "";
         /// <summary>
         /// 是否管理员
         /// </summary>

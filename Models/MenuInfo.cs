@@ -38,7 +38,8 @@ namespace Models
         /// <summary>
         /// 父菜单Id
         /// </summary>
-        public int ParentId { get; set; }
+        [MaxLength(36)]
+        public string ParentId { get; set; }
         /// <summary>
         /// 图标样式
         /// </summary>

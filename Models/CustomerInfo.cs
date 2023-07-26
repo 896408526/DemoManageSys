@@ -20,7 +20,8 @@ namespace Models
         /// <summary>
         /// 顾客地址Id
         /// </summary>
-        public int AddressId { get; set; }
+        [MaxLength(36)]
+        public string AddressId { get; set; }
 
     }
 }
